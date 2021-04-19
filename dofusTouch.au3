@@ -7,25 +7,30 @@ local $sort1  = IniRead($iniFile, "config", "sort1", "-1")
 local $sort2  = IniRead($iniFile, "config", "sort2", "-1")
 local $sort3  = IniRead($iniFile, "config", "sort3", "-1")
 local $sort4  = IniRead($iniFile, "config", "sort4", "-1")
+local $sort5  = IniRead($iniFile, "config", "sort5", "-1")
 HotKeySet("{ESC}", "end")
 HotKeySet("{F10}", "assingKey")
 HotKeySet("a", "hotKeyFunc")
 HotKeySet("z", "hotKeyFunc")
 HotKeySet("e", "hotKeyFunc")
 HotKeySet("r", "hotKeyFunc")
+HotKeySet("t", "hotKeyFunc")
 local $fenetre = GUICreate("dofusTouchScript",400, 400)
 local $label1 = GUICtrlCreateLabel("sort1",50,50)
 local $label2 = GUICtrlCreateLabel("sort2",50,100)
 local $label3 = GUICtrlCreateLabel("sort3",50,150)
 local $label4 = GUICtrlCreateLabel("sort4",50,200)
+local $label5 = GUICtrlCreateLabel("sort5",50,250)
 local $test1 = GUICtrlCreateButton("test", 250,40,100, 40)
 local $test2 = GUICtrlCreateButton("test", 250,90,100, 40)
 local $test3 = GUICtrlCreateButton("test", 250,140,100, 40)
 local $test4 = GUICtrlCreateButton("test", 250,190,100, 40)
+local $test5 = GUICtrlCreateButton("test", 250,240,100, 40)
 local $setup1 = GUICtrlCreateButton("setup", 150,40,100, 40)
 local $setup2 = GUICtrlCreateButton("setup", 150,90,100, 40)
 local $setup3 = GUICtrlCreateButton("setup", 150,140,100, 40)
 local $setup4 = GUICtrlCreateButton("setup", 150,190,100, 40)
+local $setup5 = GUICtrlCreateButton("setup", 150,240,100, 40)
 local $isSettingUp = false
  GUISetState(@SW_SHOW, $fenetre)
 local $currentSettingUp = $sort1
@@ -45,6 +50,9 @@ local $currentSettingUp = $sort1
    If $idMsg = $test4 Then
 	  move($sort4, true)
    EndIf
+   If $idMsg = $test5 Then
+	  move($sort5, true)
+   EndIf
    If $idMsg = $setup1 Then
 	  changeSelected("sort1")
    EndIf
@@ -56,6 +64,9 @@ local $currentSettingUp = $sort1
    EndIf
    If $idMsg = $setup4 Then
 	  changeSelected("sort4")
+   EndIf
+   If $idMsg = $setup5 Then
+	  changeSelected("sort5")
    EndIf
   $idMsg = GUIGetMsg()
 WEnd
@@ -88,6 +99,8 @@ func assingKey()
 	  IniWrite($iniFile,"config","sort3",eval($currentSettingUp))
    case "sort4"
 	  IniWrite($iniFile,"config","sort4",eval($currentSettingUp))
+   case "sort5"
+	  IniWrite($iniFile,"config","sort5",eval($currentSettingUp))
 
    EndSwitch
 
@@ -121,6 +134,8 @@ func hotKeyFunc()
 			move($sort3)
         Case "r"
             move($sort4)
+	    Case "t"
+            move($sort5)
     EndSwitch
 EndFunc
 
